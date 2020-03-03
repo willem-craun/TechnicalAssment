@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #671276;
+        color: white;
+    }
+
+    div.scrollable {
+        width: 300px;
+        height: 100px;
+        margin: 0;
+        padding: 0;
+        overflow: auto;
+    }   
+   
+</style>
+<body>
+  <img src="{% static 'PayLogo.png' %}">
+
+<table id="customers">
+  <tr>
+    <th>Payee</th>
+    <th>Payments</th> 
+    <th>Remittance</th>
+  </tr>
+  {% for name, payment, remitt in names_payments_and_remitts_list %}
+    <tr>
+        <td>
+          <pre>{{ name }}</pre>
+        </td>
+        <td>
+          <pre>{{ payment }}</pre>
+        </td>
+        <td>
+          {% for x in remitt%}
+          <pre>{{ x }}</pre>
+          {%endfor%}
+        </td>
+    </tr>
+  {% endfor %}
+</table>
+  </body>
+</html>
